@@ -1,11 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Разбор учебного 3D-проекта Forest Lab: HTML-слои, CSS-перспектива, JavaScript и canvas-дождь.">
+    <link rel="stylesheet" href="main.css">
+    <script src="app.js" defer></script>
+    <script src="./libs/rain.js" defer></script>
+    <title>Как устроен Forest Lab</title>
 </head>
-<body>
-    Победа
+<body class="lesson-page">
+    <div class="lesson-scene" aria-hidden="true">
+        <div class="layers__container lesson-scene__container">
+            <div class="layers__item layer-1" style="background-image: url(img/layer-1.jpg);"></div>
+            <div class="layers__item layer-2" style="background-image: url(img/layer-2.png);"></div>
+            <div class="layers__item layer-4">
+                <canvas class="rain"></canvas>
+            </div>
+            <div class="layers__item layer-5" style="background-image: url(img/layer-5.png);"></div>
+            <div class="layers__item layer-6" style="background-image: url(img/layer-6.png);"></div>
+        </div>
+    </div>
+
+    <main class="lesson-content">
+        <header class="lesson-header">
+            <a class="lesson-brand" href="./index.html" aria-label="Вернуться на главную">
+                <img src="img/logo.svg" alt="Weather Alternative Project">
+            </a>
+            <a class="lesson-back" href="./index.html">← На главную</a>
+        </header>
+
+        <section class="lesson-intro">
+            <p class="lesson-kicker">Forest Lab · учебный проект</p>
+            <h1>Как оживает<br>цифровой лес</h1>
+            <p class="lesson-lead">
+                Эта сцена собрана без 3D-редактора: несколько изображений,
+                CSS-перспектива, немного JavaScript и дождь на canvas.
+            </p>
+            <a class="button-start lesson-cta" href="#topics">Разобрать по слоям</a>
+        </section>
+
+        <section class="lesson-topics" id="topics" aria-labelledby="topics-title">
+            <div class="lesson-section-title">
+                <p class="lesson-kicker">Что здесь изучаем</p>
+                <h2 id="topics-title">Четыре части эффекта</h2>
+            </div>
+
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <span class="topic-card__number">01</span>
+                    <h3>HTML-слои</h3>
+                    <p>Фон, туман, контент, дождь и передний план расположены отдельными элементами в одном контейнере.</p>
+                    <code>.layers__item</code>
+                </article>
+
+                <article class="topic-card">
+                    <span class="topic-card__number">02</span>
+                    <h3>CSS-пространство</h3>
+                    <p><code>perspective</code> и <code>translateZ</code> разносят изображения по глубине и создают объём.</p>
+                    <code>transform-style: preserve-3d</code>
+                </article>
+
+                <article class="topic-card">
+                    <span class="topic-card__number">03</span>
+                    <h3>Движение мыши</h3>
+                    <p>JavaScript переводит координаты указателя в CSS-переменные, которые плавно поворачивают сцену.</p>
+                    <code>--move-x · --move-y</code>
+                </article>
+
+                <article class="topic-card">
+                    <span class="topic-card__number">04</span>
+                    <h3>Canvas-дождь</h3>
+                    <p>Капли рисуются линиями и обновляются через <code>requestAnimationFrame</code>, создавая непрерывную анимацию.</p>
+                    <code>&lt;canvas class="rain"&gt;</code>
+                </article>
+            </div>
+        </section>
+
+        <section class="lesson-summary">
+            <p class="lesson-kicker">Главный вывод</p>
+            <h2>Сильный эффект можно собрать из простых деталей.</h2>
+            <p>Экспериментируйте с глубиной слоёв, скоростью движения и количеством капель — так одна сцена превращается в десятки разных атмосфер.</p>
+            <a class="button-start" href="./index.html">Вернуться в лес</a>
+        </section>
+    </main>
 </body>
 </html>

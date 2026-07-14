@@ -43,8 +43,8 @@ for (let i = 0; i < 140; i++) {
 	let rainXLocation = Math.floor(Math.random() * window.innerWidth) + 1;
 	let rainYLocation = Math.random() * -500;
 	let randomRainHeight = randomNum(10, 2);
-	let randomSpeed = randomNum(20, .2);
-	let randomOpacity = Math.random() * .55;
+	let randomSpeed = randomNum(20, .3);
+	let randomOpacity = Math.random() * .65;
 	rainArray.push(new RainDrops(rainXLocation, rainYLocation, randomRainHeight, randomSpeed, randomOpacity));
 }
 

@@ -1,8 +1,12 @@
-document.addEventListener('mousemove', e => {
-    Object.assign(document.documentElement, {
-        style: `   
-        --move-x: ${(e.clientX - window.innerWidth / 2) * -.005}deg;
-        --move-y: ${(e.clientY - window.innerHeight / 2) * -.01}deg;
-        `
-    })
-})
+const root = document.documentElement;
+
+root.style.setProperty('--move-x', '0deg');
+root.style.setProperty('--move-y', '0deg');
+
+document.addEventListener('pointermove', event => {
+    const moveX = (event.clientX - window.innerWidth / 2) * -0.005;
+    const moveY = (event.clientY - window.innerHeight / 2) * -0.01;
+
+    root.style.setProperty('--move-x', `${moveX}deg`);
+    root.style.setProperty('--move-y', `${moveY}deg`);
+});

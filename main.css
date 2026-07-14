@@ -5,8 +5,11 @@
 }
 
 :root {
- --index: calc(1vw + 1vh);
- --transition: 1.5s cubic-bezier(0.5, .5, 0, 1 );
+    --index: calc(1vw + 1vh);
+    --transition: 1.5s cubic-bezier(0.5, .5, 0, 1);
+    --move-x: 0deg;
+    --move-y: 0deg;
+    --forest-accent: #b9e477;
 }
 
 @font-face {
@@ -24,6 +27,7 @@ body {
     background-color: black;
     color: #fff;
     font-family: kemerik-3d;
+    min-height: 100vh;
 }
 
 .logo {
@@ -31,10 +35,12 @@ body {
     width: var(--logo-size);
     height: var(--logo-size);
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     position: absolute;
     left: calc(50% - calc(var(--logo-size) / 2));
     top: calc(var(--index) * 2.8);
-    z-index: 1;
+    z-index: 10;
 }
 
 .layers {
@@ -81,25 +87,37 @@ transform: translateZ(380px);
 }
 
 .hero-content {
-    font-size: calc(var(--index) * 2.9);
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: calc(var(--index) * -.15);
-    line-height: 1.35em;
+    line-height: 1;
     margin-top: calc(var(--index) * 5.5);
+    width: min(780px, 90vw);
 }
 
-.hero-content span {
+.hero-content h1 {
+    font-family: Arial, sans-serif;
+    font-size: clamp(44px, 5.6vw, 82px);
+    font-weight: 900;
+    letter-spacing: -.07em;
+    line-height: .92;
+}
+
+.hero-content h1 span {
     display: block;
+    font-size: .7em;
+    letter-spacing: -.045em;
 }
 
 .hero-content__p {
     text-transform: none;
-    font-family: merriweawther-italic-3d;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
     letter-spacing: normal;
     font-size: calc(var(--index) * .73);
-    line-height: 3;
+    line-height: 1.6;
+    margin: calc(var(--index) * .7) auto calc(var(--index) * 1.2);
 }
+
 .button-start {
     font-family: Arial;
     font-weight: 600;
@@ -110,14 +128,335 @@ transform: translateZ(380px);
     background-color: transparent;
     color: #fff;
     border-radius: 10em;
-    border: rgb(255, 255, 255 / .4) 3px solid;
+    border: rgb(255 255 255 / .4) 2px solid;
     outline: none;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .25s ease, border-color .25s ease, color .25s ease, transform .25s ease;
 }
+
+.button-start:hover,
+.button-start:focus-visible {
+    color: #10180d;
+    background-color: var(--forest-accent);
+    border-color: var(--forest-accent);
+    transform: translateY(-2px);
+}
+
 .layer-4, .layer-5, .layer-6 {
     pointer-events: none;
 }
+
 a {
     text-decoration: none; 
     color: #fff; 
+}
+
+/* Вторая страница: учебный разбор проекта */
+
+html {
+    scroll-behavior: smooth;
+}
+
+.lesson-page {
+    overflow-x: hidden;
+    background: #071008;
+}
+
+.lesson-scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.lesson-scene::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgb(4 10 5 / .34), rgb(4 10 5 / .82)),
+        radial-gradient(circle at 50% 20%, transparent 0 18%, rgb(0 0 0 / .42) 78%);
+}
+
+.lesson-scene__container {
+    height: 100vh;
+    min-height: 500px;
+}
+
+.lesson-content {
+    position: relative;
+    z-index: 10;
+    width: min(1120px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.lesson-header {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.lesson-brand img {
+    display: block;
+    width: clamp(110px, 10vw, 155px);
+    height: auto;
+}
+
+.lesson-back {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(255 255 255 / .45);
+    transition: color .2s ease, border-color .2s ease;
+}
+
+.lesson-back:hover,
+.lesson-back:focus-visible {
+    color: var(--forest-accent);
+    border-color: var(--forest-accent);
+}
+
+.lesson-intro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 150px 0 80px;
+}
+
+.lesson-kicker {
+    font-family: Arial, sans-serif;
+    color: var(--forest-accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.lesson-intro h1 {
+    width: 100%;
+    max-width: 920px;
+    font-family: Arial, sans-serif;
+    font-size: clamp(48px, 6.5vw, 94px);
+    font-weight: 900;
+    line-height: .92;
+    letter-spacing: -.065em;
+    text-transform: uppercase;
+    text-wrap: balance;
+}
+
+.lesson-lead {
+    width: 100%;
+    max-width: 650px;
+    margin: 34px 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: clamp(18px, 2vw, 26px);
+    line-height: 1.55;
+    color: rgb(255 255 255 / .82);
+}
+
+.lesson-cta {
+    font-size: 14px;
+    padding: 16px 25px;
+}
+
+.lesson-topics,
+.lesson-summary {
+    margin-bottom: 15vh;
+    padding: clamp(32px, 5vw, 64px);
+    border: 1px solid rgb(255 255 255 / .18);
+    border-radius: 28px;
+    background: rgb(5 15 8 / .68);
+    box-shadow: 0 32px 90px rgb(0 0 0 / .32);
+    backdrop-filter: blur(18px);
+}
+
+.lesson-section-title {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 42px;
+}
+
+.lesson-section-title .lesson-kicker {
+    margin-bottom: 7px;
+}
+
+.lesson-section-title h2,
+.lesson-summary h2 {
+    max-width: 720px;
+    font-family: Arial, sans-serif;
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 900;
+    line-height: .98;
+    letter-spacing: -.055em;
+    text-transform: uppercase;
+}
+
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.topic-card {
+    min-height: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(24px, 3vw, 38px);
+    border: 1px solid rgb(255 255 255 / .12);
+    border-radius: 20px;
+    background: linear-gradient(145deg, rgb(255 255 255 / .09), rgb(255 255 255 / .025));
+}
+
+.topic-card__number {
+    color: var(--forest-accent);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: .12em;
+}
+
+.topic-card h3 {
+    margin: 44px 0 14px;
+    font-family: Arial, sans-serif;
+    font-size: clamp(25px, 3vw, 36px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -.04em;
+    text-transform: uppercase;
+}
+
+.topic-card p,
+.lesson-summary > p:not(.lesson-kicker) {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgb(255 255 255 / .72);
+}
+
+.topic-card > code {
+    margin-top: auto;
+    padding-top: 28px;
+    color: var(--forest-accent);
+    font-size: 13px;
+}
+
+.topic-card p code {
+    color: #fff;
+}
+
+.lesson-summary {
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.lesson-summary > p:not(.lesson-kicker) {
+    max-width: 720px;
+    margin: 28px 0 34px;
+    font-size: 18px;
+}
+
+.lesson-summary .button-start {
+    font-size: 14px;
+    padding: 15px 24px;
+}
+
+@media (max-width: 760px) {
+    .logo {
+        --logo-size: calc(var(--index) * 10);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(40px, 12vw, 62px);
+    }
+
+    .hero-content__p {
+        font-size: 14px;
+    }
+
+    .button-start {
+        font-size: 12px;
+        padding: 14px 20px;
+    }
+
+    .lesson-content {
+        width: min(1120px, calc(100% - 28px));
+    }
+
+    .lesson-header {
+        top: 16px;
+    }
+
+    .lesson-brand img {
+        width: 98px;
+    }
+
+    .lesson-back {
+        font-size: 12px;
+    }
+
+    .lesson-intro {
+        padding-top: 125px;
+    }
+
+    .lesson-intro h1 {
+        font-size: clamp(38px, 10.5vw, 52px);
+        overflow-wrap: anywhere;
+    }
+
+    .lesson-lead {
+        font-size: 17px;
+        overflow-wrap: anywhere;
+    }
+
+    .lesson-section-title {
+        display: block;
+    }
+
+    .lesson-section-title .lesson-kicker {
+        margin-bottom: 18px;
+    }
+
+    .topic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topic-card {
+        min-height: 260px;
+    }
+
+    .lesson-topics,
+    .lesson-summary {
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .layers__container,
+    .button-start {
+        transition: none;
+    }
 }
